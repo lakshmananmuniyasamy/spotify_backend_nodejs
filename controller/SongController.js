@@ -30,12 +30,22 @@ exports.getfiles = [(req, res) => {
 
 //find by artist name
 exports.findbyartistname =[(req,res)=>{
-    Songs.find({_artistname:req.params.artistName})
-        .then((songs)=>{
-            return res.status(200).send(songs)
-        }).catch((err)=>{
-            return res.status(200).send(err.message)
-        })
+    // Songs.find({_artistname:req.params.artistName})
+    //     .then((songs)=>{
+    //         return res.status(200).send(songs)
+    //     }).catch((err)=>{
+    //         return res.status(200).send(err.message)
+    //     })
+    const artistName = req.params.artistName;
+    Songs.find({ _artistname: artistName })
+        .then((songs) => {
+            if (songs.length === 0) {
+                return res.status(404).json({ message: "No songs found for the provided artist name." });
+            }
+            return res.status(200).json(songs);
+        }).catch((err) => {
+            return res.status(500).json({ error: err.message });
+        });
 }]
 
 //add the playlist
