@@ -9,6 +9,8 @@ var SongSchema = new Schema({
     artistImage: { type: String , require: true},
     songImage: { type: String , require: true},
     song: { type: String , require: true},
+    category: {type: String, require: true}
 },{timestamps: true})
 
 module.exports = mongoose.model("Songs",SongSchema);
+

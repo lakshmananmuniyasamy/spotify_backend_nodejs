@@ -13,6 +13,7 @@ exports.responseWithoutData = (res,message) => {
         message: message,
         
     }
+    
     return res.status(200).json(resData)
 }
 

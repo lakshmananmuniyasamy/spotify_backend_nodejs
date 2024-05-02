@@ -75,3 +75,20 @@ exports.getdetails = (req, res) => {
             return res.status(500).send(err.message)
         })
 }
+
+
+//findby username
+
+exports.findbyusername = async(req,res)=>{
+    console.log("req----------",req.params.username);
+    const userName = req.params.username;
+
+   await User.find({userName: userName})
+        .then((user)=>{
+            console.log("res--user------",user);
+            return res.status(200).send(user)
+        }).catch((err)=>{
+            return res.status(200).send(err.message)
+        })
+}
+

@@ -79,7 +79,7 @@ app.post("/file/upload", upload.fields([
         return res.status(400).json({ error: "No files uploaded" });
     }
 
-    const { songName, language, artistName } = req.body;
+    const { songName, language, artistName, category } = req.body;
     const artistImage = req.files['artistImage'][0].filename;
     const songImage = req.files['songImage'][0].filename;
     const songFile = req.files['song'][0].filename;
@@ -93,6 +93,7 @@ app.post("/file/upload", upload.fields([
             artistImage,
             songImage,
             song: songFile,
+            category
         });
 
         await newSong.save();
